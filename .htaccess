@@ -1,0 +1,90 @@
+# BEGIN SEGURIDAD PERSONALIZADA
+# Bloque propio. No lo toquen LiteSpeed ni WordPress: va antes de sus marcadores.
+
+# 1. Archivos que NO deben ser descargables desde el navegador.
+#    portafolio.sql es un volcado completo de la base de datos (incluye los
+#    hash de contrasena de los usuarios) y estaba servido en la raiz publica.
+<FilesMatch "(?i)\.(sql|sql\.gz|bak|bk|gf|old|orig|save|swp|log|ini|conf|env|zip|tar|gz)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "(?i)^(wp-config([.-][A-Za-z0-9_-]+)?\.php|readme\.html|license\.txt|liesmich\.html|debug\.log|\.htaccess.*|\.user\.ini|composer\.(json|lock)|package(-lock)?\.json)$">
+    Require all denied
+</FilesMatch>
+
+# 2. XML-RPC: sin Jetpack ni app movil no se usa, y es el vector habitual de
+#    fuerza bruta y de amplificacion por pingback.
+<Files "xmlrpc.php">
+    Require all denied
+</Files>
+
+# 3. Nada de PHP ejecutable dentro de uploads: regla propia en
+#    wp-content/uploads/.htaccess (mas portable que un <If> aqui).
+
+# 4. Sin listados de directorio.
+#    (No se pone ServerSignature: depende de que el hosting permita el
+#     override "Preferences" y, si no lo permite, devuelve un 500 en todo
+#     el sitio a cambio de casi nada.)
+Options -Indexes
+
+# 5. Cabeceras de seguridad basicas.
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    Header unset X-Powered-By
+    Header always unset X-Pingback
+</IfModule>
+
+# 6. No se anade aqui una redireccion a HTTPS: WP_HOME y WP_SITEURL en
+#    wp-config.php ya son https y WordPress redirige solo. Si el proxy del
+#    hosting no expone HTTPS=on ni X-Forwarded-Proto, una regla asi entra en
+#    bucle de redirecciones y deja el sitio inaccesible.
+# END SEGURIDAD PERSONALIZADA
+
+# BEGIN LSCACHE
+# ---------------------------------------------------------------------------
+# Cache de LiteSpeed: APAGADA a proposito.
+#
+# Estas reglas las escribio el plugin LiteSpeed Cache, que ahora mismo esta
+# DESACTIVADO. La combinacion era la peor posible:
+#
+#     CacheLookup on                                  guarda y sirve copias
+#     RewriteRule .* - [E=Cache-Control:no-autoflush] pero no las renueva
+#
+# Con el plugin apagado no habia nadie que vaciara esas copias, asi que el
+# servidor seguia entregando el sitio tal y como estaba en 2020 por mucho que
+# se cambiara el contenido o se importara otra base de datos.
+#
+# Si algun dia se quiere volver a tener cache -que va bien para la velocidad-,
+# el camino correcto es ACTIVAR el plugin LiteSpeed Cache desde el escritorio
+# y dejar que el reescriba este bloque. No encenderla a mano aqui.
+# ---------------------------------------------------------------------------
+<IfModule LiteSpeed>
+RewriteEngine on
+CacheLookup off
+CacheDisable public /
+</IfModule>
+# END LSCACHE
+# BEGIN NON_LSCACHE
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+## LITESPEED WP CACHE PLUGIN - Do not edit the contents of this block! ##
+# END NON_LSCACHE
+# BEGIN WordPress
+# Las directivas (líneas) entre «BEGIN WordPress» y «END WordPress» son
+# generadas dinámicamente y solo deberían ser modificadas mediante filtros de WordPress.
+# Cualquier cambio en las directivas que hay entre esos marcadores serán sobrescritas.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+

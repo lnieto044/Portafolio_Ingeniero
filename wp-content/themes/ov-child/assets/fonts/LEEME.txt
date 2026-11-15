@@ -1,0 +1,6 @@
+Inter, de Rasmus Andersson.
+Licencia SIL Open Font License 1.1 (permite redistribución).
+Origen: https://github.com/google/fonts/tree/main/ofl/inter
+
+Se usa solo desde PHP (GD) para generar las portadas de los proyectos que
+todavía no tienen una imagen propia. No se carga en el navegador.

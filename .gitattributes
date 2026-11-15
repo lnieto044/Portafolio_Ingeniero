@@ -1,0 +1,5 @@
+* text=auto
+# cmd.exe necesita CRLF: con LF fallan los goto/call a etiquetas.
+*.bat text eol=crlf
+*.ttf binary
+*.png binary

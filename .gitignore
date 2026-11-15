@@ -1,0 +1,31 @@
+# ---------------------------------------------------------------------------
+# LISTA BLANCA: se ignora TODO y solo se versiona lo que se nombra abajo.
+#
+# El repositorio es publico. En esta carpeta viven cosas que no pueden salir:
+#   - wp-config.php   -> clave de la base de produccion y sales de WordPress
+#   - Divi            -> tema comercial con licencia de Elegant Themes
+#   - plugins, nucleo de WordPress, uploads, caches y logs
+# Con lista blanca, un "git add ." nunca las arrastra por descuido.
+# ---------------------------------------------------------------------------
+/*
+
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/.htaccess
+!/arrancar-local.bat
+!/router-local.php
+!/wp-config-local.php
+
+!/wp-content/
+/wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
+!/wp-content/themes/ov-child/
+
+# Por si acaso, aunque caigan dentro de lo permitido.
+*.log
+*.sql
+*.sql.gz
+*.zip
+wp-config.php
