@@ -16,6 +16,10 @@
 !/arrancar-local.bat
 !/router-local.php
 !/wp-config-local.php
+!/render.yaml
+!/herramientas/
+# Copia estatica que se publica en Render (la genera herramientas/exportar-estatico.py).
+!/sitio-estatico/
 
 !/wp-content/
 /wp-content/*

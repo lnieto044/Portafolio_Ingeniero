@@ -1,0 +1,23 @@
+# Blueprint de Render.
+#
+# Publica sitio-estatico/, la copia HTML que genera herramientas/exportar-estatico.py
+# desde el WordPress local. Los sitios estaticos de Render son gratuitos, se
+# sirven desde su CDN y NO se duermen (eso solo les pasa a los "web services").
+#
+# No hay nada que compilar: cada git push a main vuelve a publicar.
+services:
+  - type: web
+    name: portafolio-guillermo-nieto
+    runtime: static
+    buildCommand: echo "El sitio ya viene generado en sitio-estatico/"
+    staticPublishPath: ./sitio-estatico
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin

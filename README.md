@@ -12,13 +12,30 @@ Código del sitio [portafolio.saludgo.org](https://portafolio.saludgo.org): un W
 | `arrancar-local.bat` | Arranca la copia local en Windows: MariaDB de XAMPP + servidor embebido de PHP. |
 | `router-local.php` | Router del servidor embebido de PHP (hace de `.htaccess` en local). |
 | `wp-config-local.php` | Ajustes solo para desarrollo local. **No subir al servidor.** |
+| [`sitio-estatico/`](sitio-estatico/) | Copia HTML del sitio que se publica en Render. **Generada: no se edita a mano.** |
+| [`herramientas/exportar-estatico.py`](herramientas/exportar-estatico.py) | Genera `sitio-estatico/` desde el WordPress local. |
+| `render.yaml` | Configuración de Render (sitio estático gratuito). |
 
 ## Qué NO está, a propósito
 
 - **`wp-config.php`**: contiene credenciales de producción.
-- **El núcleo de WordPress, Divi y los plugins**: se instalan aparte. Divi es un tema
-  comercial y no se puede redistribuir.
-- **`wp-content/uploads`, cachés, logs y volcados de base de datos.**
+- **El código PHP de WordPress, Divi y los plugins**: se instalan aparte. Divi es un
+  tema comercial y no se puede redistribuir. En `sitio-estatico/` solo van el CSS, JS
+  e imágenes que cualquier visitante del sitio ya descarga.
+- **Cachés, logs y volcados de base de datos.**
+
+## Publicación en Render
+
+El sitio público es la copia estática de `sitio-estatico/`. Render la sirve gratis
+desde su CDN y **no se duerme**. El formulario de contacto funciona sin PHP: en la
+copia estática se envía a [FormSubmit](https://formsubmit.co), que reenvía cada
+mensaje al correo (ver `ov-child/includes/modo-estatico.php`).
+
+Para publicar un cambio:
+
+1. Edita en el WordPress local (`arrancar-local.bat` → http://localhost:8080/wp-admin).
+2. `python herramientas/exportar-estatico.py`
+3. `git add -A`, `git commit -m "..."` y `git push`. Render publica solo en un minuto.
 
 ## Montarlo en local (Windows)
 

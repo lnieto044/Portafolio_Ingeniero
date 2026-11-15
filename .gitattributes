@@ -3,3 +3,5 @@
 *.bat text eol=crlf
 *.ttf binary
 *.png binary
+# Generado: que GitHub no lo cuente en los lenguajes ni lo despliegue en los diffs.
+sitio-estatico/** linguist-generated=true -diff

@@ -190,6 +190,9 @@ require_once OVC_DIR . '/includes/contacto.php';
 require_once OVC_DIR . '/includes/captcha.php';
 require_once OVC_DIR . '/includes/imagenes-animadas.php';
 
+// Despues de contacto.php y captcha.php: usa sus funciones y quita sus ganchos.
+require_once OVC_DIR . '/includes/modo-estatico.php';
+
 // La pantalla de importacion solo tiene sentido en el escritorio.
 if ( is_admin() ) {
 	require_once OVC_DIR . '/includes/cv-importar.php';
