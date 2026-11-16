@@ -1632,30 +1632,59 @@ html body #page-container .et_pb_button.ovc-boton-secundario::after {
 .ovc-habilidades--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .ovc-habilidades--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
+/*
+ * Registro corporativo (noviembre de 2026).
+ *
+ * Antes: cuadro de icono con degradado azul-violeta, etiquetas tipo pildora
+ * en lila y tarjetas que saltaban al pasar el raton. Se leia a startup, no a
+ * hoja de vida para una empresa. Ahora: filete superior en el azul de la
+ * marca, icono de contorno sobre fondo claro, numeracion como indice y
+ * etiquetas neutras de esquina casi recta. El azul queda para lo que guia la
+ * vista; el resto, en grafito y gris.
+ */
 .ovc-hab {
-	background: #fff; border: 1px solid var(--ovc-linea);
-	border-radius: 14px; padding: 28px 24px;
-	transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+	background: #fff;
+	border: 1px solid var(--ovc-linea);
+	border-top: 3px solid var(--ovc-azul);
+	border-radius: 10px;
+	padding: 24px 26px 28px;
+	box-shadow: 0 1px 2px rgba(23, 28, 43, .04);
+	transition: box-shadow .2s ease;
 }
 
-.ovc-hab:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 16px 34px rgba(70, 31, 239, .14);
-	border-color: rgba(70, 31, 239, .3);
+.ovc-hab:hover { box-shadow: 0 12px 28px rgba(23, 28, 43, .08); }
+
+.ovc-hab__cabecera {
+	display: flex; align-items: center; justify-content: space-between;
+	margin: 0 0 18px;
 }
 
 .ovc-hab__marca {
-	width: 52px; height: 52px; margin: 0 0 16px; border-radius: 13px;
-	background: linear-gradient(135deg, var(--ovc-azul), var(--ovc-violeta));
+	width: 44px; height: 44px; margin: 0 0 18px; border-radius: 8px;
+	background: rgba(0, 0, 255, .05);
+	border: 1px solid rgba(0, 0, 255, .14);
 	display: flex; align-items: center; justify-content: center;
-	color: #fff;
+	color: var(--ovc-azul);
 }
 
-.ovc-hab__icono { width: 26px; height: 26px; display: block; }
+.ovc-hab__cabecera .ovc-hab__marca { margin: 0; }
+
+.ovc-hab__icono { width: 22px; height: 22px; display: block; }
+
+.ovc-hab__num {
+	font-size: 12px; font-weight: 700; letter-spacing: 2px;
+	color: #a0a7b4; font-variant-numeric: tabular-nums;
+}
 
 .ovc-hab__titulo {
 	font-size: 17px; font-weight: 700; line-height: 1.35;
-	margin: 0 0 14px; padding: 0; color: var(--ovc-grafito);
+	margin: 0 0 8px; padding: 0; color: var(--ovc-grafito);
+}
+
+.ovc-hab__resumen {
+	font-size: 14px; line-height: 1.6; color: #5b6472;
+	margin: 0 0 18px; padding: 0 0 18px !important;
+	border-bottom: 1px solid var(--ovc-linea);
 }
 
 /* Se anula la vinneta y el margen que Divi pone a cualquier ul del contenido. */
@@ -1674,11 +1703,12 @@ html body #page-container .et_pb_button.ovc-boton-secundario::after {
 }
 
 .ovc-hab__items li {
-	font-size: 13px; font-weight: 600; line-height: 1.3;
-	padding: 6px 11px !important;
-	border-radius: 999px;
-	background: rgba(70, 31, 239, .07);
-	color: var(--ovc-azul);
+	font-size: 12.5px; font-weight: 600; line-height: 1.3;
+	padding: 5px 10px !important;
+	border-radius: 5px;
+	background: var(--ovc-humo);
+	border: 1px solid var(--ovc-linea);
+	color: var(--ovc-grafito);
 }
 
 
@@ -2798,14 +2828,12 @@ button.ovc-vcard__segundo.is-hecho {
 .ovc-idioma__tramos { display: inline-flex; gap: 4px; }
 
 .ovc-idioma__tramos i {
-	width: 22px; height: 6px; border-radius: 3px;
-	background: rgba(70, 31, 239, .14);
+	width: 22px; height: 6px; border-radius: 2px;
+	background: rgba(57, 62, 70, .12);
 	display: block;
 }
 
-.ovc-idioma__tramos i.is-lleno {
-	background: linear-gradient(90deg, var(--ovc-azul), var(--ovc-violeta));
-}
+.ovc-idioma__tramos i.is-lleno { background: var(--ovc-azul); }
 
 .ovc-idioma__nivel {
 	font-size: 12.5px; font-weight: 600; letter-spacing: .3px;

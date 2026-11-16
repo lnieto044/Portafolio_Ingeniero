@@ -46,45 +46,58 @@ function ovc_lista_habilidades() {
 		 * con la que se postula, y lo que respalda el proyecto destacado:
 		 * ponerla la cuarta obligaria a bajar para encontrarla.
 		 */
+		/*
+		 * Cada area lleva un resumen de una linea: que le resuelve a una
+		 * empresa. Quien contrata lee primero eso y luego las herramientas;
+		 * una lista de nombres sola obliga a deducir para que sirven.
+		 */
 		array(
-			'icono'  => 'nube',
-			'titulo' => __( 'Nube y seguridad de acceso', 'ov-child' ),
-			'items'  => array( 'Amazon Cognito', 'MFA TOTP', 'Tokens RS256 / JWKS', 'IAM — mínimo privilegio', 'Gestión de sesiones', 'Hacking ético' ),
+			'icono'   => 'nube',
+			'titulo'  => __( 'Seguridad e identidad en la nube', 'ov-child' ),
+			'resumen' => __( 'Autenticación, autorización y control de acceso para aplicaciones en AWS.', 'ov-child' ),
+			'items'   => array( 'Amazon Cognito', 'MFA TOTP', 'Tokens RS256 / JWKS', 'IAM — mínimo privilegio', 'Gestión de sesiones', 'Hacking ético' ),
 		),
 		array(
-			'icono'  => 'datos',
-			'titulo' => __( 'Datos e inteligencia de negocio', 'ov-child' ),
-			'items'  => array( 'Power BI', 'Looker Studio', 'SQL Server', 'MySQL', 'Python · pandas', 'ETL / ELT', 'Power Query', 'DAX', 'Excel avanzado', 'Machine Learning' ),
+			'icono'   => 'datos',
+			'titulo'  => __( 'Datos e inteligencia de negocio', 'ov-child' ),
+			'resumen' => __( 'Integración, modelado y visualización de datos para la toma de decisiones.', 'ov-child' ),
+			'items'   => array( 'Power BI', 'Looker Studio', 'SQL Server', 'MySQL', 'Python · pandas', 'ETL / ELT', 'Power Query', 'DAX', 'Excel avanzado', 'Machine Learning' ),
 		),
 		array(
-			'icono'  => 'codigo',
-			'titulo' => __( 'Desarrollo e integración', 'ov-child' ),
-			'items'  => array( 'Python', 'APIs REST', 'FastAPI', 'ASP.NET Core', 'Spring Boot', 'PHP', 'JavaScript', 'WordPress', 'Git', 'Postman' ),
+			'icono'   => 'codigo',
+			'titulo'  => __( 'Desarrollo e integración de software', 'ov-child' ),
+			'resumen' => __( 'Aplicaciones web y APIs que conectan los sistemas de la organización.', 'ov-child' ),
+			'items'   => array( 'Python', 'APIs REST', 'FastAPI', 'ASP.NET Core', 'Spring Boot', 'PHP', 'JavaScript', 'WordPress', 'Git', 'Postman' ),
 		),
 		array(
-			'icono'  => 'engranaje',
-			'titulo' => __( 'Automatización', 'ov-child' ),
-			'items'  => array( 'Power Automate', 'Scripts en Python', 'PowerShell', 'SharePoint', 'Integración con Microsoft 365', 'Informes programados' ),
+			'icono'   => 'engranaje',
+			'titulo'  => __( 'Automatización de procesos', 'ov-child' ),
+			'resumen' => __( 'Flujos de trabajo e informes que dejan de depender de tareas manuales.', 'ov-child' ),
+			'items'   => array( 'Power Automate', 'Scripts en Python', 'PowerShell', 'SharePoint', 'Integración con Microsoft 365', 'Informes programados' ),
 		),
 		array(
-			'icono'  => 'soporte',
-			'titulo' => __( 'Soporte y servicios TI', 'ov-child' ),
-			'items'  => array( 'Mesa de ayuda N1 y N2', 'Remedy', 'Salesforce', 'ITIL · ANS', 'Redes y VPN', 'Mantenimiento y reparación', 'Inventario de activos', 'Microsoft 365' ),
+			'icono'   => 'soporte',
+			'titulo'  => __( 'Gestión de servicios TI', 'ov-child' ),
+			'resumen' => __( 'Mesa de ayuda, infraestructura y activos bajo buenas prácticas ITIL.', 'ov-child' ),
+			'items'   => array( 'Mesa de ayuda N1 y N2', 'Remedy', 'Salesforce', 'ITIL · ANS', 'Redes y VPN', 'Mantenimiento de hardware', 'Inventario de activos', 'Microsoft 365' ),
 		),
 		array(
-			'icono'  => 'validacion',
-			'titulo' => __( 'Validación y control de la información', 'ov-child' ),
-			'items'  => array( 'Verificación documental', 'Cruce entre sistemas', 'Listas restrictivas', 'Tablas de retención documental', 'Control fiscal participativo' ),
+			'icono'   => 'validacion',
+			'titulo'  => __( 'Calidad y control de la información', 'ov-child' ),
+			'resumen' => __( 'Veracidad, consistencia y trazabilidad de los datos que sostienen una decisión.', 'ov-child' ),
+			'items'   => array( 'Verificación documental', 'Cruce entre sistemas', 'Listas restrictivas', 'Tablas de retención documental', 'Control fiscal participativo' ),
 		),
 		array(
-			'icono'  => 'diseno',
-			'titulo' => __( 'Diseño y marca', 'ov-child' ),
-			'items'  => array( 'Adobe Photoshop', 'Identidad visual', 'Branding', 'Diseño de interfaces', 'Piezas para impresión y web' ),
+			'icono'   => 'diseno',
+			'titulo'  => __( 'Diseño y comunicación visual', 'ov-child' ),
+			'resumen' => __( 'Identidad de marca e interfaces para canales digitales e impresos.', 'ov-child' ),
+			'items'   => array( 'Adobe Photoshop', 'Identidad visual', 'Branding', 'Diseño de interfaces', 'Piezas para impresión y web' ),
 		),
 		array(
-			'icono'  => 'gestion',
-			'titulo' => __( 'Gestión', 'ov-child' ),
-			'items'  => array( 'Gerencia de proyectos', 'Atención y servicio al cliente', 'Comunicación asertiva', 'Documentación técnica y manuales' ),
+			'icono'   => 'gestion',
+			'titulo'  => __( 'Gestión de proyectos y clientes', 'ov-child' ),
+			'resumen' => __( 'Planeación, seguimiento y documentación con foco en el cliente.', 'ov-child' ),
+			'items'   => array( 'Gerencia de proyectos', 'Atención y servicio al cliente', 'Comunicación asertiva', 'Documentación técnica y manuales' ),
 		),
 	);
 }
@@ -167,7 +180,9 @@ function ovc_shortcode_habilidades( $atts ) {
 	$atts = shortcode_atts(
 		array(
 			'titulo'   => __( 'HABILIDADES', 'ov-child' ),
-			'columnas' => 3,
+			// Dos y no tres: ocho areas en tres columnas dejaban un hueco en la
+			// ultima fila, y a dos alinean con Idiomas y Competencias de abajo.
+			'columnas' => 2,
 			'blandas'  => 'on',
 		),
 		$atts,
@@ -185,12 +200,18 @@ function ovc_shortcode_habilidades( $atts ) {
 		<?php endif; ?>
 
 		<div class="ovc-habilidades__rejilla ovc-habilidades--cols-<?php echo esc_attr( $columnas ); ?>">
-			<?php foreach ( ovc_lista_habilidades() as $g ) : ?>
+			<?php foreach ( ovc_lista_habilidades() as $n => $g ) : ?>
 				<article class="ovc-hab">
-					<span class="ovc-hab__marca">
-						<?php echo ovc_icono_habilidad( $g['icono'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-					</span>
+					<div class="ovc-hab__cabecera">
+						<span class="ovc-hab__marca">
+							<?php echo ovc_icono_habilidad( $g['icono'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						</span>
+						<span class="ovc-hab__num" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $n + 1 ) ); ?></span>
+					</div>
 					<h3 class="ovc-hab__titulo"><?php echo esc_html( $g['titulo'] ); ?></h3>
+					<?php if ( ! empty( $g['resumen'] ) ) : ?>
+						<p class="ovc-hab__resumen"><?php echo esc_html( $g['resumen'] ); ?></p>
+					<?php endif; ?>
 					<ul class="ovc-hab__items">
 						<?php foreach ( $g['items'] as $i ) : ?>
 							<li><?php echo esc_html( $i ); ?></li>
@@ -238,7 +259,7 @@ function ovc_shortcode_habilidades( $atts ) {
 					<span class="ovc-hab__marca">
 						<?php echo ovc_icono_habilidad( 'persona' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</span>
-					<h3 class="ovc-hab__titulo"><?php esc_html_e( 'En el día a día', 'ov-child' ); ?></h3>
+					<h3 class="ovc-hab__titulo"><?php esc_html_e( 'Competencias personales', 'ov-child' ); ?></h3>
 					<ul class="ovc-hab__items">
 						<?php foreach ( ovc_lista_cualidades() as $cualidad ) : ?>
 							<li><?php echo esc_html( $cualidad ); ?></li>
