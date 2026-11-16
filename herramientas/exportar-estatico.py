@@ -5,7 +5,8 @@ Genera la copia estatica del portafolio que se publica en Render.
 Uso, con el sitio local arrancado (arrancar-local.bat):
 
     python herramientas/exportar-estatico.py
-    python herramientas/exportar-estatico.py --url https://portafolio-xxxx.onrender.com
+    python herramientas/exportar-estatico.py --url https://otro-dominio.com
+    python herramientas/exportar-estatico.py --relativo
 
 Recorre el WordPress local siguiendo los enlaces desde la portada. Pide cada
 pagina con la cabecera «X-OVC-Estatico: 1» (ver ov-child/includes/
@@ -14,9 +15,12 @@ que necesita PHP), descarga las paginas y todo lo que usan -CSS, JS, fuentes,
 imagenes- y lo deja en sitio-estatico/ con las direcciones de localhost
 cambiadas.
 
-Sin --url los enlaces quedan relativos a la raiz (/acerca/), que funciona en
-cualquier dominio. Con --url quedan absolutos, que es lo que prefieren Google
-y las vistas previas de WhatsApp/LinkedIn para la etiqueta canonical y og:url.
+Por defecto las direcciones quedan absolutas con URL_PUBLICA (la de Render).
+Hace falta: WhatsApp, LinkedIn y Facebook solo muestran la imagen de la vista
+previa (og:image) si la direccion es completa, y Google quiere la canonical
+absoluta. Si algun dia se conecta un dominio propio, cambiar URL_PUBLICA o usar
+--url. Con --relativo quedan relativas a la raiz (/acerca/): sirve para probar
+la copia en cualquier servidor, pero las vistas previas pierden la imagen.
 
 Despues:  git add -A  &&  git commit -m "..."  &&  git push
 Render detecta el push y publica solo.
@@ -37,6 +41,7 @@ from collections import deque
 from pathlib import Path
 
 ORIGEN = "http://localhost:8080"
+URL_PUBLICA = "https://portafolio-guillermo-nieto.onrender.com"
 RAIZ = Path(__file__).resolve().parent.parent
 DESTINO = RAIZ / "sitio-estatico"
 PAGINA_404 = "/esta-pagina-no-existe-ovc/"
@@ -138,9 +143,10 @@ def enlaces_css(texto, ruta_css):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--url", default="", help="direccion publica, p. ej. https://portafolio-xxxx.onrender.com")
+    ap.add_argument("--url", default=URL_PUBLICA, help=f"direccion publica (por defecto {URL_PUBLICA})")
+    ap.add_argument("--relativo", action="store_true", help="enlaces relativos a la raiz, sin dominio")
     args = ap.parse_args()
-    base = args.url.rstrip("/")
+    base = "" if args.relativo else args.url.rstrip("/")
 
     try:
         descargar("/wp-includes/images/blank.gif")

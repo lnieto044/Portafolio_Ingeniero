@@ -189,6 +189,7 @@ require_once OVC_DIR . '/includes/cv-habilidades.php';
 require_once OVC_DIR . '/includes/contacto.php';
 require_once OVC_DIR . '/includes/captcha.php';
 require_once OVC_DIR . '/includes/imagenes-animadas.php';
+require_once OVC_DIR . '/includes/vista-previa.php';
 
 // Despues de contacto.php y captcha.php: usa sus funciones y quita sus ganchos.
 require_once OVC_DIR . '/includes/modo-estatico.php';

@@ -26,6 +26,8 @@ Código del sitio [portafolio.saludgo.org](https://portafolio.saludgo.org): un W
 
 ## Publicación en Render
 
+**En línea:** https://portafolio-guillermo-nieto.onrender.com
+
 El sitio público es la copia estática de `sitio-estatico/`. Render la sirve gratis
 desde su CDN y **no se duerme**. El formulario de contacto funciona sin PHP: en la
 copia estática se envía a [FormSubmit](https://formsubmit.co), que reenvía cada
